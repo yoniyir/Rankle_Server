@@ -1,2 +1,2 @@
-# rankle
-full rankle application
+# Rankle - Server
+Server side of Rankle
