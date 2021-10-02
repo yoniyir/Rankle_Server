@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from passlib.hash import pbkdf2_sha256
+from flask_cors import CORS,cross_origin
 import functions
 
 
@@ -16,6 +17,7 @@ import functions
 
 
 app = Flask(__name__)
+CORS(app)
 app.config[
     "MONGO_URI"
 ] = "mongodb+srv://yoni:Yoni1997@cluster0.wpwdy.mongodb.net/teams-app-db?retryWrites=true&w=majority"
