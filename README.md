@@ -1,6 +1,7 @@
 # Rankle - Server
-##REST APIs
+## REST API
 This application provides a set of REST APIs for interacting with a database that stores information about users, groups, and players.
+This app is written completley in Python and Flask
 
 ## /login
 Handles user login requests. Accepts POST requests with JSON body in the following format:
@@ -55,3 +56,51 @@ Handles requests to delete a player from a group. Accepts DELETE requests with p
 
 ## /upload
 Handles file upload requests. Accepts POST requests with file attached in the request body. The file is stored in the database.
+
+## Randomization Functions
+
+This script contains three functions for randomizing a list of players into groups.
+
+## `randomize_players`
+
+This function takes in two arguments:
+- `active_players`: a list of player objects
+- `size`: an integer representing the desired size of each group
+
+It returns a tuple containing:
+- a list of lists, where each inner list represents a group of players
+- a list of players that were not included in any of the groups due to an uneven number of players
+
+This function creates groups of players by selecting random players from the `active_players` list and adding them to a group until the desired group size is reached. Any remaining players that do not fit evenly into the groups are added to the `other` list and returned along with the list of groups.
+
+## `randomize_by_rank`
+
+This function also takes in two arguments:
+- `active_players`: a list of player objects
+- `size_group`: an integer representing the desired size of each group
+
+It returns a tuple containing:
+- a list of lists, where each inner list represents a group of players
+- a list of players that were not included in any of the groups due to an uneven number of players
+
+This function creates groups of players by sorting the `active_players` list by rank and then selecting players from each rank in turn to fill the groups. Any remaining players that do not fit evenly into the groups are added to the `other` list and returned along with the list of groups.
+
+## `get_rank`
+
+This function takes in one argument:
+- `player`: a player object
+
+It returns the player's rank as an integer. This function is used as a key for sorting the `active_players` list in the `randomize_by_rank` function.
+
+
+To start the server and install the required dependencies, run the following commands:
+
+```
+pip install -r requirements.txt
+export FLASK_APP=app.py
+flask run
+```
+
+These commands will install the required dependencies, set the `FLASK_APP` environment variable to `app.py`, and start the server.
+
+You can then access the endpoints at `http://localhost:5000`.
